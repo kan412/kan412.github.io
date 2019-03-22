@@ -1,0 +1,156 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    color:#263852;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+    font-family: 'lato', sans-serif;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+a,
+a:active,
+a:link,
+a:visited{
+    color:#D35D47;
+}
+
+p{
+    margin-bottom:1rem;
+}
+
+#app-header{
+    background:#263852;
+    color:#fff;
+    padding: 1.5rem;
+    display: flex;
+}
+
+.app-header__logo{
+    font-family: 'Merriweather', serif;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 60px;
+    flex: 1;
+}
+
+.app-header__logo--center{
+    text-align: center;
+}
+
+#app-main{
+    width:100%;
+    max-width: 1170px;
+    min-height: 400px;
+    margin:0 auto;
+    padding:2rem;
+    display:flex;
+}
+
+.app-main__sidebar{
+    flex: 1;
+}
+
+.widget{
+    padding: 1rem;
+    background: #f8f8f8;
+    border: 1px solid #e6e4e4;
+    box-shadow: 0px 0px 4px #e3edfd;
+    position: sticky;
+    top:1.2rem;
+}
+
+.widget__title{
+    font-size:12px;
+    line-height:18px;
+}
+
+.widget__body select{
+    border-radius: 3px;
+    font-size: 12px;
+    line-height: 18px;
+    padding: 4px;
+}
+
+.app-main__news{
+    flex: 6;
+    padding:0 1.5rem;
+}
+
+.news{
+    padding:1.5rem;
+    border-bottom:1px solid #f8f8f8;
+}
+
+.news:first-child{
+    padding-top:0;
+}
+
+.news:last-child{
+    border-bottom:0;
+}
+
+.news__body{
+    margin-bottom: 1rem;
+}
+
+.news__title{
+    font-size:20px;
+    line-height:30px;
+}
+
+.news__meta{
+    font-size:12px;
+    line-height:18px;
+    background:#f8f8f8;
+    border: 1px solid #eee;
+    padding:0.25rem 0.5rem;
+}
+
+#app-footer{
+    text-align: center;
+    font-size:12px;
+    line-height:18px;
+}
+
+
+@media all and ( max-width: 770px ){
+    #app-main{
+        flex-flow: column;
+    }
+
+    .widget__body select{
+        width: 100%;
+    }
+
+    .app-main__news{
+        padding:0;
+    }
+
+    .news{
+        padding-left:0;
+        padding-right: 0;
+    }
+
+    .news:first-child{
+        padding-top:1.5rem;
+    }
+}
+
+
+

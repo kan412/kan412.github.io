@@ -4,20 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>News</title>
-    <style>
-        body{
-            font-family: "Arial", sans-serif;
-            font-size:14px;
-            line-height:21px;
-        }
-
-        h1.title{
-            text-align:center;
-        }
-    </style>
+    <title>News Feed</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700,900" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1 class="title">Under Construction!!</h1>
+    <header id="app-header">
+        <div class="app-header__logo app-header__logo--center">
+            NEWSFEED
+        </div>
+    </header>
+
+    <main id="app-main">
+
+    <!-- <h1 class="app-main__title">RECENT NEWS</h1> -->
+
+       <aside class="app-main__sidebar">
+            <div class="widget">
+                <h4 class="widget__title">Filtered By :</h4>
+                <div class="widget__body">
+                    <select>
+                        <option value="all">All</option>
+                        <option value="channel-one">Channel One</option>
+                        <option value="channel-two">Channel Two</option>
+                        <option value="channel-three">Channel Three</option>
+                        <option value="channel-four">Channel Four</option>
+                    </select>
+                </div>
+            </div>
+       </aside>
+       <section class="app-main__news">
+            
+        
+            <article class="news">
+                <h3 class="news__title">Title One</h3>
+    
+                <div class="news__body">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus atque ratione provident perferendis accusamus voluptatibus ea porro optio non, temporibus ab voluptas sed facilis voluptatum animi iste in dolor esse?</p>
+                </div>
+    
+                <div class="news__meta">
+                    Posted by <b class="news__meta__channelname">Channel One</b>
+                </div>
+            </article>
+
+            <article class="news">
+                <h3 class="news__title">Title Two</h3>
+    
+                <div class="news__body">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus atque ratione provident perferendis accusamus voluptatibus ea porro optio non, temporibus ab voluptas sed facilis voluptatum animi iste in dolor esse?</p>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias cupiditate, placeat illo assumenda architecto consequuntur quia necessitatibus, nemo optio sequi cumque officia voluptatibus aliquid dolores officiis. Natus ex vero repellendus!</p>
+                </div>
+    
+                <div class="news__meta">
+                    Posted by <b class="news__meta__channelname">Channel Two</b>
+                </div>
+            </article>
+
+
+            <article class="news">
+                <h3 class="news__title">Title Three</h3>
+    
+                <div class="news__body">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus atque ratione provident perferendis accusamus voluptatibus ea porro optio non, temporibus ab voluptas sed facilis voluptatum animi iste in dolor esse?</p>
+                </div>
+    
+                <div class="news__meta">
+                    Posted by <b class="news__meta__channelname">Channel Three</b>
+                </div>
+            </article>
+
+
+
+       </section>
+    </main>
+
+    <footer id="app-footer">
+        <p class="app-footer__copyrights">Powered by <a target="_blank" href="https://newsapi.org/">NewsAPI.org</a></p>
+    </footer>
+    
 </body>
 </html>
