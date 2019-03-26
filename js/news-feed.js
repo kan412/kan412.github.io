@@ -1,89 +1,102 @@
 class Newsfeed{
-    constructor(){
-        this.key = '6df77133a743489a965dd29e31343e75';
+    constructor(key){
+        this.key = key;
         this.sourcesAPI= 'https://newsapi.org/v1/sources';
-        //this.channelApi = `https://newsapi.org/v1/articles?source=${this.channelID}&apiKey=${this.key}`;
     }
-
+    
     load(){
-        this.sources;
-        this.evenHandler();
+        this.renderNewsChannels();
+        this.handleEvents();
     }
 
-    evenHandler(){
+    renderNewsChannels(){
+        return fetch(this.sourcesAPI).
+                then( response => response.json()).
+                then( data => this.generateNewsChannelSelectElement(data)).
+                catch(function(error){
+                    console.log(error);
+            });
+    }
+
+    generateNewsChannelSelectElement( data ){
+        let selectElement = document.getElementById('channelFilter');
+        let selectElementOptions='<option value="select-channel">Select Channel</option>';
+        data.sources.map( source => {
+            selectElementOptions += `<option value='${source.id}'>${source.name}</option>`;
+        });
+        selectElement.innerHTML = selectElementOptions;
+    }
+
+
+    // To Handle 'change' event
+    handleEvents(){
         const channelFilter = document.getElementById('channelFilter');
 
         channelFilter.addEventListener('change', (e) => {
              if( e.target.tagName === 'SELECT'){
-                 this.articlesByChannel(e.target.value);
+                 this.getNewsByChannel(e.target.value);
              }
         });
     }
-
     
-    articlesByChannel( channelID ){
-        const channelApi = `https://newsapi.org/v1/articles?source=${channelID}&apiKey=${this.key}`;
+    getNewsByChannel( channelID ){
+        const channelAPI = `https://newsapi.org/v1/articles?source=${channelID}&apiKey=${this.key}`;
 
-        return fetch(channelApi).
+        return fetch(channelAPI).
                 then(response => response.json()).
-                then(data => this.renderArticles(data)).
-                catch(function(e){
-                    console.log(e);
+                then(data => this.renderNews(data)).
+                catch(function(error){
+                    console.log(error);
                 });
     }
 
-    renderArticles( data ){
-        let mainContainer = document.getElementsByClassName('app-main__news')[0];
-        let articles=`<h1 class="app-main__news__title">${data.source}</h1>`;
-        data.articles.map(article => { 
-            let authorName = article.author;
-            let title = article.title;
-            let content = article.description;
-            let imageURL = article.urlToImage;
-            let url = article.url;
-            articles += `<article class="news">
-                            <div class="news__image">
-                                <img src="${imageURL}" alt="${title}" />
-                            </div>
-                            <div class="news__body">
-                                <h3 class="news__title">${title}</h3>
-                               
-                                <div class="news__meta">
-                                    <p>Author: <b class="news__meta__channelname">${authorName}</b></p>
-                                </div>
-                                
-                                <div class="news__content">
-                                    <p>${content}
-                                </div>
-
-                                <a class="news__readmore" target="_blank" href="${url}">Continue Reading</a>
-                            </div>
-                        </article>`;
+    renderNews( data ){
+        let newsContainer = document.getElementById('app-main__news');
+        let newsContent=`<h1 tabindex="0" class="app-main__news__title">${data.source}</h1>`;
+        data.articles.map(news => { 
+            newsContent += this.generateNewsHTML(news.author, news.title, news.description, news.urlToImage, news.url, news.publishedAt);
         });
 
-    mainContainer.innerHTML = articles;
-    mainContainer.classList = "app-main__news";
-    mainContainer.focus();
+        newsContainer.innerHTML = newsContent;
+        newsContainer.classList = "app-main__news";
+        newsContainer.focus();
 
     }
 
-    get sources(){
-        return fetch(this.sourcesAPI).
-                then( response => response.json()).
-                then( data => this.renderSources(data)).
-                catch(function(e){
-                    console.log(e);
-            });
+    generateNewsHTML( author, title, content, image, url, publishedOn){
+        return `<article class="news">
+                    <div class="news__image">
+                        <img src="${image}" alt="${title}" />
+                    </div>
+                    <div class="news__body">
+                        <h3 class="news__title">${title}</h3>
+                        
+                        <div class="news__meta">
+                            <p>Author: <b><em class="news__meta__author">${author}</em></b> // Published on <b>${ this.formateDate(publishedOn) }</b></p>
+                        </div>
+                        
+                        <div class="news__content">
+                            <p>${content}</p>
+                        </div>
+
+                        <a class="news__readmore" target="_blank" href="${url}">Continue Reading</a>
+                    </div>
+                </article>`;
     }
 
-    renderSources( data ){
-        let channelContainer = document.getElementById('channelFilter');
-        let sourcesHTML='<option value="select-channel">Select Channel</option>';
-        data.sources.map( source => {
-            sourcesHTML += `<option value='${source.id}'>${source.name}</option>`;
-        });
-        channelContainer.innerHTML = sourcesHTML;
+
+
+    // helper 
+    formateDate(dateString){
+        let date = new Date(dateString);
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+        let modifiedDate = `${day}/${month}/${year}`;
+
+        return modifiedDate;
     }
+
 }
 
 
