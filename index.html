@@ -4,20 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>News</title>
-    <style>
-        body{
-            font-family: "Arial", sans-serif;
-            font-size:14px;
-            line-height:21px;
-        }
-
-        h1.title{
-            text-align:center;
-        }
-    </style>
+    <title>News Feed</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700,900" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="style.css" />
+    <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1 class="title">Under Construction!!</h1>
+    <header id="app-header">
+        <div class="app-header__logo app-header__logo--center">
+            <i class="fas fa-newspaper"></i>  NEWSFEED
+        </div>
+    </header>
+
+    <main id="app-main">
+       <aside class="app-main__sidebar">
+            <div class="widget">
+                <h4 class="widget__title"><i class="fas fa-filter"></i> Filter By</h4>
+                <div class="widget__body">
+                    <form>
+                        <label for="channelFilter">Channel</label>
+                        <select id="channelFilter">
+                            <option value="select-channel">Select Channel</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+       </aside>
+       <section class="app-main__news app-main__news--center" id="app-main__news">
+            <h1 class="app-main__news__title app-main__news__title--big">Welcome</h1>
+            <p>Please use the <b><a href="#channelFilter">CHANNEL FILTER</a></b> to view news</p>
+       </section>
+    </main>
+
+    <footer id="app-footer">
+        <p class="app-footer__copyrights">Powered by <a target="_blank" href="https://newsapi.org/">NewsAPI.org</a></p>
+    </footer>
+
+    <script type="text/javascript" src="js/news-feed.js"></script>
+    <script type="text/javascript">
+        let news = new Newsfeed('6df77133a743489a965dd29e31343e75');
+        news.load();
+    </script>
+    
 </body>
 </html>
