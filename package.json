@@ -1,0 +1,28 @@
+{
+  "name": "kan412",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src/js/news-feed.js --out-file dist/js/news-feed.js",
+    "watch": "babel src/js/news-feed.js --watch --out-file dist/js/news-feed.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kan412/kan412.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kan412/kan412.github.io/issues"
+  },
+  "homepage": "https://github.com/kan412/kan412.github.io#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.4.0"
+  }
+}
