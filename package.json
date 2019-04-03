@@ -2,10 +2,10 @@
   "name": "kan412",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/js/index.js",
   "scripts": {
-    "build": "babel src/js/news-feed.js --out-file dist/js/news-feed.js",
-    "watch": "babel src/js/news-feed.js --watch --out-file dist/js/news-feed.js"
+    "build-babel": "babel src/js/ --out-dir dist/js/",
+    "watch-babel": "babel src/js/ --watch --out-dir dist/js/"
   },
   "repository": {
     "type": "git",
