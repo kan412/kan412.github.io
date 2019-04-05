@@ -7,10 +7,7 @@
                         "last 2 versions",
                         "ie >= 11"
                     ]
-                },
-                "modules": "umd",
-                "useBuiltIns": "usage",
-                "corejs": "^2.6.5"
+                }
             }
         ]
     ]
