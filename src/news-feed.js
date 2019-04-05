@@ -9,11 +9,15 @@ class Newsfeed{
         this.handleEvents();
     }
 
-    renderNewsChannels(){
-        return fetch(this.sourcesAPI).
-                then( response => response.json()).
-                then( data => this.generateNewsChannelSelectElement(data)).
-                catch( error => console.log(error));
+    async renderNewsChannels(){
+        try {
+            const response = await fetch(this.sourcesAPI);
+            const data = await response.json();
+            return this.generateNewsChannelSelectElement(data);
+        }
+        catch (error) {
+            return console.log(error);
+        }
     }
 
     generateNewsChannelSelectElement( data ){
@@ -36,12 +40,16 @@ class Newsfeed{
         });
     }
     
-    getNewsByChannel( channelID ){
+    async getNewsByChannel( channelID ){
         const channelAPI = `https://newsapi.org/v1/articles?source=${channelID}&apiKey=${this.key}`;
-        return fetch(channelAPI).
-                then(response => response.json()).
-                then(data => this.renderNews(data)).
-                catch( error => console.log(error));
+        try {
+            const response = await fetch(channelAPI);
+            const data = await response.json();
+            return this.renderNews(data);
+        }
+        catch (error) {
+            return console.log(error);
+        }
     }
 
     renderNews( data ){
@@ -93,6 +101,9 @@ class Newsfeed{
     }
 
 }
+
+export default Newsfeed;
+
 
 
 
