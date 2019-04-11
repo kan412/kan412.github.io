@@ -1,7 +1,10 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-    mode: 'development',
+    devServer:{
+        contentBase: "/dist"
+    },
     module:{
         rules:[
                 {
@@ -19,6 +22,11 @@ module.exports = {
                     use:['style-loader', 'css-loader', 'postcss-loader']             
                 }
             ]
-        }
+         },
+        plugins: [
+            new HtmlWebpackPlugin({ 
+                template: './index.html'
+            })
+        ]
     }
 
