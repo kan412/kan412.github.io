@@ -1,3 +1,4 @@
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
@@ -27,6 +28,17 @@ module.exports = {
             new HtmlWebpackPlugin({ 
                 template: './index.html'
             })
-        ]
+        ],
+        optimization: {
+            minimizer: [
+              new UglifyJSPlugin({
+                uglifyOptions: {
+                  compress: {
+                    drop_console: true,
+                  }
+                }
+              })
+            ]
+        }
     }
 

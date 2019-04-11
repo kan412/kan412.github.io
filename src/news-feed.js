@@ -16,7 +16,7 @@ class Newsfeed{
             import(/* webpackChunkName: "getNews" */"./modules/news/getNews").then( module => {
                 if( target.tagName === 'SELECT'){
 
-                    //console.log(module.getNewsByChannel);
+                    console.log(module.getNewsByChannel);
 
                     module.getNewsByChannel(target.value, this.key);
                 }
