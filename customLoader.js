@@ -1,8 +1,6 @@
 function removeAllNumberKeys(jsonObj){
     for(var key in jsonObj){
-
         const pattn = new RegExp(/^[0-9]*$/);
-
         if( jsonObj.hasOwnProperty(key) && pattn.test(key) === false ){
             let childObj = jsonObj[key];
             removeAllNumberKeys(childObj);

@@ -1,26 +1,31 @@
-import {channelFilter} from './modules/variables';
-import {renderNewsChannels} from './modules/source/getSources';
+import {API_BASE,API_KEY, SOURCES_API} from './modules/variables';
+import SourcesComponent from './SourcesComponent';
 
 class Newsfeed{
     constructor(key){
         this.key = key;
+        this.handleEvents();
     }
     
-    load(){
-        renderNewsChannels();
-        this.handleEvents();
+    async load(){
+        const sourcesComponent = new SourcesComponent();
+        const sources = await sourcesComponent.fetch(SOURCES_API);
+        sourcesComponent.render(sources);
+        
     }
 
     handleEvents(){
-        channelFilter.addEventListener('change', ({ target }) => {
-            import(/* webpackChunkName: "getNews" */"./modules/news/getNews").then( module => {
-                if( target.tagName === 'SELECT'){
+        const channelFilter = document.getElementById('channelFilter');
 
-                    console.log(module.getNewsByChannel);
+        channelFilter.addEventListener('change', ({ target }) => {  
 
-                    module.getNewsByChannel(target.value, this.key);
-                }
-            });
+                 import("./NewsComponent").then( async module => {
+                    const channelID = target.value;
+                    const newsComponent = new module.default();
+                    let news = await newsComponent.fetch(API_BASE, API_KEY, channelID);
+                    newsComponent.render(news);
+                });
+            
         });
     }
 }
