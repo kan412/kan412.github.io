@@ -3538,10 +3538,10 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*!****************************!*\
   !*** ./src/generated.json ***!
   \****************************/
-/*! exports provided: 0, default */
+/*! exports provided: name, email, address, default */
 /***/ (function(module) {
 
-eval("module.exports = [{\"name\":\"test\",\"email\":\"test@gmail.com\",\"address\":{\"12321\":\"random\",\"state\":\"AP\",\"city\":\"HYD\"}}];\n\n//# sourceURL=webpack:///./src/generated.json?");
+eval("module.exports = {\"name\":\"test\",\"email\":\"test@gmail.com\",\"address\":{\"state\":\"AP\",\"city\":\"HYD\"}};\n\n//# sourceURL=webpack:///./src/generated.json?");
 
 /***/ }),
 
