@@ -1,0 +1,11 @@
+[ 
+   {
+      "name": "test",
+      "email": "test@gmail.com",
+      "address": {
+        "state": "AP",
+        "city": "HYD",
+        "12321": "random"
+      }
+  }
+]
