@@ -1,15 +1,13 @@
-import {formateDate} from './modules/helper';
+import {formateDate} from '../modules/helper';
+import ApiFetcher from './ApiFetcher';
 
 class NewsComponent extends ApiFetcher{
     constructor(){
-
+        super();
     }
 
-    async fetch( API_BASE, API_KEY, channelID){
-        const channelAPI = `https://newsapi.org/v1/articles?source=${channelID}&apiKey=${API_KEY}`;
-        const response = await fetch(channelAPI);
-        const data = await response.json();
-        return data;    
+    async fetch( url ){
+        return await super.fetch(url);
     }
 
     render(data){

@@ -2,11 +2,12 @@ import ApiFetcher from './ApiFetcher';
 
 class SourcesComponent extends ApiFetcher{
     constructor(){
-
+        super();
     }
 
-    fetch(api){
-        return super.fetch(api);
+    async fetch(url){
+        const data = await super.fetch(url);
+        return data.sources;
     }
 
     render(sources){
