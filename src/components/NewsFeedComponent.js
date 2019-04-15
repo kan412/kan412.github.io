@@ -15,29 +15,19 @@ class NewsFeedComponent{
             console.log(error);
         }
 
-        this.bindChangeEvent();
+        const selectElement = document.getElementById('channelFilter');
+        selectElement.addEventListener('change', ({ target }) => this.loadNews(target) );
     }
 
-    bindChangeEvent(){
-        const selectElement = document.getElementById('channelFilter');
-    
-        selectElement.addEventListener('change', ({ target }) => {  
-            if(target.tagName === 'SELECT'){
-                import("./NewsComponent").then( async module => {
-
-                    
-                    const newsComponent = new module.default();
-
-                    try{
-                        const news = await newsComponent.fetch( config, target.value );
-                        newsComponent.render(news);
-                    }catch(error){
-                        console.log(error);
-                    }
-
-                });
-            }
-        });
+    async loadNews(target){
+        try{
+            const module = await import("./NewsComponent");
+            const newsComponent = new module.default();
+            const news = await newsComponent.fetch( config, target.value );
+            newsComponent.render(news);
+        }catch(error){
+            console.log(error);
+        }
     }
 }
 
