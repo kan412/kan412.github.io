@@ -4,7 +4,6 @@ import SourcesComponent from './SourcesComponent';
 class NewsFeedComponent{
     constructor(){
         this.initialize();
-        this.bindChangeEvent();
     }
     
     async initialize(){
@@ -15,6 +14,8 @@ class NewsFeedComponent{
         }catch(error){
             console.log(error);
         }
+
+        this.bindChangeEvent();
     }
 
     bindChangeEvent(){
@@ -23,10 +24,17 @@ class NewsFeedComponent{
         selectElement.addEventListener('change', ({ target }) => {  
             if(target.tagName === 'SELECT'){
                 import("./NewsComponent").then( async module => {
+
                     const url = `${config["API_BASE"]}/articles?source=${target.value}&apiKey=${config["API_KEY"]}`;
                     const newsComponent = new module.default();
-                    const news = await newsComponent.fetch( url );
-                    newsComponent.render(news);
+
+                    try{
+                        const news = await newsComponent.fetch( url );
+                        newsComponent.render(news);
+                    }catch(error){
+                        console.log(error);
+                    }
+
                 });
             }
         });

@@ -1,11 +1,10 @@
 import '@babel/polyfill';
 import 'isomorphic-fetch';
 import NewsFeedComponent from './components/NewsFeedComponent';
-// import json from './generated.json';
-
 import style from '../style.css';
 
-// console.log(json);
+import json from './generated.json'; // using this to test custom loader
+console.log(json); // using this to test custom loader and this line will be removed when production mode is used
 
 new NewsFeedComponent();
 
