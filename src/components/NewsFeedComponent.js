@@ -9,7 +9,7 @@ class NewsFeedComponent{
     async initialize(){
         const sourcesComponent = new SourcesComponent();
         try{
-            const sources = await sourcesComponent.fetch( config["SOURCES_API"] );
+            const sources = await sourcesComponent.fetch(config);
             sourcesComponent.render(sources);
         }catch(error){
             console.log(error);
@@ -25,11 +25,11 @@ class NewsFeedComponent{
             if(target.tagName === 'SELECT'){
                 import("./NewsComponent").then( async module => {
 
-                    const url = `${config["API_BASE"]}/articles?source=${target.value}&apiKey=${config["API_KEY"]}`;
+                    
                     const newsComponent = new module.default();
 
                     try{
-                        const news = await newsComponent.fetch( url );
+                        const news = await newsComponent.fetch( config, target.value );
                         newsComponent.render(news);
                     }catch(error){
                         console.log(error);

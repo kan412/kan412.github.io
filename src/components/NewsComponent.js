@@ -6,8 +6,9 @@ class NewsComponent extends ApiFetcher{
         super();
     }
 
-    async fetch( url ){
-        return await super.fetch(url);
+    fetch( config, sourceId ){
+        const url = `${config["API_BASE"]}/articles?source=${sourceId}&apiKey=${config["API_KEY"]}`;
+        return super.fetch(url);
     }
 
     render(data){

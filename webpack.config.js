@@ -10,7 +10,9 @@ module.exports = {
         rules:[
                 {
                     test: /\.json$/,
-                    use:['./customLoader.js']
+                    type: 'javascript/auto',    
+                    exclude: /(node_modules)/,
+                    loader: path.resolve(__dirname, './customLoader.js')
                 },
                 {
                     test: /\.js$/,

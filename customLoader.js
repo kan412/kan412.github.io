@@ -1,13 +1,14 @@
-function removeAllNumberKeys(jsonObj){
-    for(var key in jsonObj){
+function removeAllNumberKeys(json){
+     Object.keys(json).forEach((key) => {
         const pattn = new RegExp(/^[0-9]*$/);
-        if( jsonObj.hasOwnProperty(key) && pattn.test(key) === false ){
-            let childObj = jsonObj[key];
-            removeAllNumberKeys(childObj);
-        }else if(pattn.test(key) === true){
-            delete jsonObj[key];
+        const value = json[key];
+
+        if( typeof value === "object"){
+            removeAllNumberKeys(value);
+        }else if(pattn.test(value)){
+            delete json[key];
         }
-    }
+     });
   
 }
 
@@ -15,5 +16,5 @@ module.exports = (source) => {
    let json = JSON.parse(source);
    removeAllNumberKeys(json);
    let result = JSON.stringify(json);
-   return result;
+   return `module.exports = ${result}`;
 }

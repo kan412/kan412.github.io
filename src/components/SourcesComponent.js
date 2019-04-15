@@ -5,7 +5,8 @@ class SourcesComponent extends ApiFetcher{
         super();
     }
 
-    async fetch(url){
+    async fetch(config){
+        const url = `${config["API_BASE"]}/sources`;
         const data = await super.fetch(url);
         return data.sources;
     }
