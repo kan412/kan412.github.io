@@ -16,14 +16,14 @@ class NewsFeedComponent{
         }
 
         const selectElement = document.getElementById('channelFilter');
-        selectElement.addEventListener('change', ({ target }) => this.loadNews(target) );
+        selectElement.addEventListener('change', ({ target }) => this.loadNews(target.value) );
     }
 
-    async loadNews(target){
+    async loadNews(sourceId){
         try{
             const module = await import("./NewsComponent");
             const newsComponent = new module.default();
-            const news = await newsComponent.fetch( config, target.value );
+            const news = await newsComponent.fetch( config, sourceId );
             newsComponent.render(news);
         }catch(error){
             console.log(error);
