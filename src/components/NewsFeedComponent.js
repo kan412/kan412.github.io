@@ -1,4 +1,3 @@
-import config from "../config.json";
 import SourcesComponent from './SourcesComponent';
 
 class NewsFeedComponent{
@@ -9,7 +8,7 @@ class NewsFeedComponent{
     async initialize(){
         const sourcesComponent = new SourcesComponent();
         try{
-            const sources = await sourcesComponent.fetch(config);
+            const sources = await sourcesComponent.fetch();
             sourcesComponent.render(sources);
         }catch(error){
             console.log(error);
@@ -23,7 +22,7 @@ class NewsFeedComponent{
         try{
             const module = await import("./NewsComponent");
             const newsComponent = new module.default();
-            const news = await newsComponent.fetch( config, sourceId );
+            const news = await newsComponent.fetch( sourceId );
             newsComponent.render(news);
         }catch(error){
             console.log(error);

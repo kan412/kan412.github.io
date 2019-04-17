@@ -1,4 +1,5 @@
 import {formateDate} from '../modules/helper';
+import config  from '../config.json';
 import ApiFetcher from './ApiFetcher';
 
 class NewsComponent extends ApiFetcher{
@@ -6,7 +7,7 @@ class NewsComponent extends ApiFetcher{
         super();
     }
 
-    fetch( config, sourceId ){
+    fetch( sourceId ){
         const url = `${config["API_BASE"]}/articles?source=${sourceId}&apiKey=${config["API_KEY"]}`;
         return super.fetch(url);
     }

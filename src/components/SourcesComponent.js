@@ -1,11 +1,12 @@
 import ApiFetcher from './ApiFetcher';
+import config from '../config.json';
 
 class SourcesComponent extends ApiFetcher{
     constructor(){
         super();
     }
 
-    async fetch(config){
+    async fetch(){
         const url = `${config["API_BASE"]}/sources`;
         const data = await super.fetch(url);
         return data.sources;

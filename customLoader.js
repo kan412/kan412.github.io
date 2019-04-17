@@ -1,12 +1,12 @@
-function removeAllNumberKeys(json){
-     Object.keys(json).forEach((key) => {
+function removeAllNumberKeys(obj){
+     Object.keys(obj).forEach((key) => {
         const pattn = new RegExp(/^[0-9]*$/);
-        const value = json[key];
+        const value = obj[key];
 
         if( typeof value === "object"){
             removeAllNumberKeys(value);
         }else if(pattn.test(value)){
-            delete json[key];
+            delete obj[key];
         }
      });
   
