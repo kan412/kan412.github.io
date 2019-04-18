@@ -2,23 +2,15 @@ import ErrorPopupComponent from './ErrorPopupComponent';
 
 class ErrorHandlerComponent{
     static instance = null;
- 
-    constructor(error){
-        this.loadErrorPopup(error);
-    }
 
-    static getInstance(error){
+     static async getInstance(){
         if (ErrorHandlerComponent.instance === null){
-            ErrorHandlerComponent.instance = new ErrorHandlerComponent(error);
+            const module = await import(/* webpackChunkName: "errorPopup" */ './ErrorPopupComponent');
+            ErrorHandlerComponent.instance = new module.default();
         }
         return ErrorHandlerComponent.instance;
     }
 
-    async loadErrorPopup(error){
-        const module = await import(/* webpackChunkName: "errorPopup" */ './ErrorPopupComponent');
-        const errorPopup = new module.default();
-        errorPopup.render(error);
-    }
 }
 
 export default ErrorHandlerComponent;
