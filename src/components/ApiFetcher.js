@@ -1,26 +1,23 @@
 import ErrorHandlerComponent from './ErrorHandlerComponent';
 
 class ApiFetcher{
-    async fetch(url){
+    async fetch(url, options){
         try{
-            const response = await fetch(url);
-            console.log(response.status);
-            //const data = await response.json();
-            
+            const response = await fetch(url, options);
+
             if(response.ok){
-                //return data;
+                const data = await response.json();
+                return data;
             }else{
-                return Promise.reject({
+                throw({ 
                     status: response.status,
                     statusText: response.statusText
-                })
-            }
-            
+                });    
+            }  
         }catch(error){
-            console.log(error);
-
+            const errorPopup = await ErrorHandlerComponent.getInstance();
+            errorPopup.render(error);
         }
-    
     }
 }
 

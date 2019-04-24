@@ -1,19 +1,20 @@
 import {formateDate} from '../modules/helper';
 import config  from '../config.json';
-import ApiFetcher from './ApiFetcher';
+import ApiRequestFactory from './ApiRequestFactory';
 
-class NewsComponent extends ApiFetcher{
+class NewsComponent extends ApiRequestFactory{
     constructor(){
         super();
     }
 
     fetch( sourceId ){
         const url = `${config["API_BASE"]}/articles?source=${sourceId}&apiKey=${config["API_KEY"]}`;
-        return super.fetch(url);
+        return super.request(url, 'GET');
     }
 
     render(data){
         const newsContainer =  document.getElementById("app-main__news");
+        
         let newsContent=`<h1 tabindex="0" class="app-main__news__title">${data.source}</h1>`;
 
         data.articles.map(article => { 
@@ -23,7 +24,7 @@ class NewsComponent extends ApiFetcher{
         newsContainer.innerHTML = newsContent;
         newsContainer.classList = "app-main__news";
         newsContainer.focus();
-    
+
     }
 
     generateArticleHTML(author, title, content, image, url, publishedOn){

@@ -19,7 +19,7 @@ class NewsFeedComponent{
     async loadNews(sourceId){
         const module = await import(/* webpackChunkName: "getNews" */ "./NewsComponent");
         const newsComponent = new module.default();
-        const news = await newsComponent.fetch(sourceId );
+        const news = await newsComponent.fetch(sourceId);
         newsComponent.render(news);
     }
 }
