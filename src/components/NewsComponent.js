@@ -1,15 +1,12 @@
 import {formateDate} from '../modules/helper';
 import config  from '../config.json';
-import ApiRequestFactory from './ApiRequestFactory';
+import ApiRequestProxy from './ApiRequestFactory';
 
-class NewsComponent extends ApiRequestFactory{
-    constructor(){
-        super();
-    }
+class NewsComponent{
 
     fetch( sourceId ){
         const url = `${config["API_BASE"]}/articles?source=${sourceId}&apiKey=${config["API_KEY"]}`;
-        return super.request(url, 'GET');
+        return ApiRequestProxy.request(url, 'GET');
     }
 
     render(data){

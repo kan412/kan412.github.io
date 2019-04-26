@@ -1,14 +1,11 @@
 import config from '../config.json';
-import ApiRequestFactory from './ApiRequestFactory';
+import ApiRequestProxy from './ApiRequestFactory';
 
-class SourcesComponent extends ApiRequestFactory{
-    constructor(){
-        super();
-    }
+class SourcesComponent{
 
     async fetch(){
         const url = `${config["API_BASE"]}/sources`;
-        const data = await super.request(url, 'GET');
+        const data = await ApiRequestProxy.request(url, 'GET');
         return data.sources;
     }
 

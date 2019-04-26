@@ -35,4 +35,17 @@ class ApiRequestFactory{
 
 }
 
-export default ApiRequestFactory;
+var handler = {
+    get: (target, propKey) => {
+        return function(...args){
+            console.log({ url: args[0], method: args[1], body: args[2] });
+            return target[propKey].apply(this, args);
+        }
+    }
+}
+
+
+var target = new ApiRequestFactory();
+var ApiRequestProxy = new Proxy(target, handler);
+
+export default ApiRequestProxy;
