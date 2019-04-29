@@ -1,11 +1,11 @@
-import ApiFetcher from "./ApiFetcher";
+import ApiFetcher from "./api-fetcher";
 
 class ApiFetcherFactory{
-    
     request(url, method, body){
         const apiFetcher = new ApiFetcher();
         switch(method){
             case 'GET':
+           
             return apiFetcher.fetch(url, { method: 'GET' });
 
             case 'POST':

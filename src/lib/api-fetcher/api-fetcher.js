@@ -1,4 +1,4 @@
-import ErrorHandlerComponent from './ErrorHandlerComponent';
+import ErrorHandlerComponent from '../../core/error-handling';
 
 class ApiFetcher{
     async fetch(url, options){
