@@ -3,6 +3,7 @@ import {formateDate} from '../../lib/helper';
 class NewsListView{
 
     render(data){
+
         const newsContainer =  document.getElementById("app-main__news");
         
         let newsContent=`<h1 tabindex="0" class="app-main__news__title">${data.source}</h1>`;

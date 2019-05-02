@@ -1,16 +1,14 @@
-import config from '../../config.json';
-import ApiFetcherProxy from '../../shared/api-fetcher-proxy';
+import NewsSourcesView from "./view";
 
 class NewsSourcesModel{
-    constructor(){
-        this.proxy = new ApiFetcherProxy().load();
+    constructor(view){
+        this.view = view;
     }
 
-    async fetch(){
-        const url = `${config["API_BASE"]}/sources`;
-        const data = await this.proxy.request(url, 'GET');
-        return data.sources;
+    setSources(sources){
+        this.view.render(sources);
     }
+
 }
 
 export default NewsSourcesModel;
