@@ -20,4 +20,6 @@ class ApiFetcherProxy{
     
 }
 
-export default ApiFetcherProxy;
+const proxy = new ApiFetcherProxy().load()
+export default proxy;
+

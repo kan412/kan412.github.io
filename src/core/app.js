@@ -7,7 +7,7 @@ class App{
     }
 
     initialize(){
-        this.newsSources = new NewsSources(this);
+        this.newsSources = new NewsSources(this.handleSourceChange);
         this.newsList = new NewsList();
         this.setDefaultSource();    
     }
@@ -15,10 +15,10 @@ class App{
     setDefaultSource = async() =>{
         const sources = await this.newsSources.getSources();
         const defaultSource = sources[0].id;
-        this.onSourceChange(defaultSource);
+        this.handleSourceChange(defaultSource);
     }
 
-    onSourceChange = ( sourceId ) => {
+    handleSourceChange = ( sourceId ) => {
         this.newsList.getNewsBySourceID(sourceId);
     }
 
