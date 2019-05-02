@@ -9,16 +9,11 @@ class NewsListController{
         this.model = new NewsListModel(this.view);
         this.proxy = new ApiFetcherProxy().load();
     }
- 
-    async loadNews(sourceId){
-        const news = await newsListController.getNewsBySourceID(sourceId);
-        newsListController.renderNews(news);
-    }
 
-    async getNewsBySourceID(sourceId){
+    getNewsBySourceID = async (sourceId) => {
         const url = `${config["API_BASE"]}/articles?source=${sourceId}&apiKey=${config["API_KEY"]}`;
         const data = await this.proxy.request(url, 'GET');
-        this.model.getNews(data);
+        this.model.setNews(data);
     }
 }
 

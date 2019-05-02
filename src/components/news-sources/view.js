@@ -1,18 +1,21 @@
 class NewsSourcesView{
     constructor(controller){
         this.controller = controller;
-        this.handleChangeEvent();
+        this.subscribe();
     }
 
-    handleChangeEvent(){
-        const selectElement = document.getElementById('channelFilter');
-        selectElement.addEventListener('change', ({ target }) => this.controller.changeSource(target.value) );
+    dropDown = () => document.getElementById('channelFilter');
+
+    subscribe(){
+        const selectElement = this.dropDown();
+        selectElement.addEventListener('change', ({ target }) => this.handleChange(target.value) );
     }
+
+    handleChange = (source) => this.controller.changeSource(source);
 
     render(sources){
-        const selectElement = document.getElementById("channelFilter");
-        let selectElementOptions='<option value="select-channel">Select Channel</option>';
- 
+        const selectElement = this.dropDown();
+        let selectElementOptions = "";
         sources.map(({ id, name }) => {
             selectElementOptions += `<option value='${id}'>${name}</option>`;
         });
