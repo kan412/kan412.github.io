@@ -13,7 +13,6 @@ class NewsSourcesController{
 
     async getSources(){
         const url = `${config["API_BASE"]}/sources`;
-        console.log(proxy);
         const data = await proxy.request(url, 'GET');
         this.model.setSources(data.sources);
         return data.sources;
