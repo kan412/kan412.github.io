@@ -6,11 +6,15 @@ class NewsSourcesModel{
 
     setSources(sources){
         this.sources = sources;
-        this.notify(this.sources);
+        this.notify();
     }
 
-    notify(sources){
-        this.view.render(sources);
+    setActiveSource = (sourceId) => {
+        this.view.setActiveSource(sourceId);
+    }
+
+    notify(){
+        this.view.render(this.sources);
     }
 
 }

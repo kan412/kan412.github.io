@@ -1,6 +1,6 @@
 import NewsListModel from './model';
 import NewsListView from "./view";
-import config from '../../config.json';
+import { API_BASE, API_KEY } from '../../config.json';
 import proxy from '../../shared/api-fetcher-proxy';
 
 class NewsListController{
@@ -10,7 +10,7 @@ class NewsListController{
     }
 
     getNewsBySourceID = async (sourceId) => {
-        const url = `${config["API_BASE"]}/articles?source=${sourceId}&apiKey=${config["API_KEY"]}`;
+        const url = `${API_BASE}/articles?source=${sourceId}&apiKey=${API_KEY}`;
         const data = await proxy.request(url, 'GET');
         this.model.setNews(data);
     }

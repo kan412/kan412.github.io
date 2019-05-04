@@ -8,11 +8,15 @@ class NewsSourcesView{
 
     subscribe(){
         const selectElement = this.dropDown();
-        selectElement.addEventListener('change', ({ target }) => this.handleChange(target.value) );
+        selectElement.addEventListener('change', ({ target }) => this.setActiveSource(target.value) );
     }
 
-    handleChange = (source) => this.controller.changeSource(source);
-
+    setActiveSource = (source) => {
+        const selectElement = this.dropDown();
+        selectElement.value = source;
+        this.controller.changeSource(source);
+    }
+  
     render(sources){
         const selectElement = this.dropDown();
         let selectElementOptions = "";

@@ -6,11 +6,11 @@ class NewsListModel{
 
     setNews(data){
         this.news = data;
-        this.notify(this.news);
+        this.notify();
     }
 
-    notify(data){
-        this.view.render(data);
+    notify(){
+        this.view.render(this.news);
     }
 }
 
