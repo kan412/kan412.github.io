@@ -1,9 +1,0 @@
-class ApiFetcher{
-    async fetch(url){
-        const response = await fetch(url);
-        const data = await response.json();
-        return data;
-    }
-}
-
-export default ApiFetcher;
