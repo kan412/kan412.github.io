@@ -62,7 +62,7 @@ Result:
 { "name" : "Elena'S Restuarant" }
 
 
-5. What are _id and borough of �Seafood� (cuisine) restaurants  which received at least one "B" grade in period from 2014-02-01 to 2014-03-01? Use projection to include only _id and borough.
+5. What are _id and borough of 'Seafood' (cuisine) restaurants  which received at least one "B" grade in period from 2014-02-01 to 2014-03-01? Use projection to include only _id and borough.
 
 Query:
 
