@@ -3,3 +3,31 @@ For this task you will use the aggregation framework to figure out pairs of peop
 This problem is a little tricky because a recipient may appear more than once in the To list for a message. You will need to fix that in a stage of the aggregation before doing your grouping and counting of (sender, recipient) pairs. 
 Which pair of people have the greatest number of messages in the dataset? 
 For you reference the number of messages from phillip.love@enron.co to sladanaanna.kulic@enron.com is 144. 
+
+
+db.enron.aggregate([
+    {
+        $unwind: '$headers.To'
+    },
+    {
+        $group:{
+            '_id': {
+                'from': '$headers.From',
+                'to': '$headers.To',
+                'body': '$body'
+            },
+            'messagesCount': { $sum : '$_id' }
+        }
+    },
+    {
+        $project:{
+            _id: 0,
+            mail: {
+                from: '$_id.from',
+                to: '$_id.to'
+            }
+        }
+    }
+
+],{ allowDiskUse: true }).pretty();
+
