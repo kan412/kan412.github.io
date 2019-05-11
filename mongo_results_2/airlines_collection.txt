@@ -45,7 +45,7 @@ db.airlines.aggregate([
     {
         $project:{
             _id : 0,
-            avgPassengers: '$avgPassengers',
+            avgPassengers: 1,
             city: '$_id'
         }
     },

@@ -5,29 +5,52 @@ Which pair of people have the greatest number of messages in the dataset?
 For you reference the number of messages from phillip.love@enron.co to sladanaanna.kulic@enron.com is 144. 
 
 
+Query : 
+
 db.enron.aggregate([
     {
         $unwind: '$headers.To'
     },
     {
-        $group:{
-            '_id': {
-                'from': '$headers.From',
-                'to': '$headers.To',
-                'body': '$body'
+       $group:{
+           '_id':{
+               'from': '$headers.From',
+               'id': '$_id'
             },
-            'messagesCount': { $sum : '$_id' }
+            'to': { $addToSet : '$headers.To'}
+       }
+    },
+    {
+        $unwind: '$to'
+    },
+    {
+        $group: {
+            '_id': {
+                from: '$_id.from',
+                to: '$to'
+            },
+            'count': { $sum: 1}
         }
     },
     {
-        $project:{
-            _id: 0,
-            mail: {
-                from: '$_id.from',
-                to: '$_id.to'
-            }
+        $sort: {
+            'count': -1
         }
+    },
+    {
+        $limit: 1
     }
+]);
 
-],{ allowDiskUse: true }).pretty();
+
+Result: 
+
+{ "_id" : { "from" : "susan.mara@enron.com", "to" : "jeff.dasovich@enron.com" }, "count" : 750 }
+
+
+
+
+
+
+
 
