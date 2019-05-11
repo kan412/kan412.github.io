@@ -4,12 +4,8 @@ Query:
 
 db.restaurants.find(
     {
-        cuisine: {
-            $eq: 'Chinese'
-        },
-        borough: {
-            $eq: 'Queens'
-        }
+        cuisine:'Chinese',
+        borough:'Queens'
     }
 ).count();
 
@@ -20,7 +16,7 @@ Result:
 2. What is the _id of the restaurant which has the grade with the highest ever score? 
 
 Query 
-db.restaurants.find({_id},{ _id: 1}).sort({"grades.score": -1}).limit(1);
+db.restaurants.find({},{ _id: 1}).sort({"grades.score": -1}).limit(1);
 
 Result
 { "_id" : ObjectId("5cc814bda0f8e7b1cfbbc2f5") }
@@ -31,7 +27,7 @@ Result
 
 Query:
 
-db.restaurants.updateMany({ borough: {$eq: 'Manhattan'}}, { $push: {grades:{date: ISODate(), grade:"A", score: 7 }}});
+db.restaurants.updateMany({ borough: 'Manhattan' }, { $push: {grades:{date: ISODate(), grade:"A", score: 7 }}});
 
 
 Result:
@@ -43,23 +39,12 @@ Result:
 
 Query:
 
-db.restaurants.find({ "grades.7.score" :{ $lt : 7 }},{_id:0, name:1});
+db.restaurants.find({ "grades.8.score" :{ $lt : 7 }},{_id:0, name:1});
 
 Result:
 
-{ "name" : "El Castillo De Madison" }
-{ "name" : "Vee'S Restaurant" }
-{ "name" : "Don Alex Restaurant" }
-{ "name" : "Gahm Mi Oak Restaurant" }
-{ "name" : "Au Za'Atar" }
-{ "name" : "Sunshine 27 Seafood Restaurant" }
-{ "name" : "New Chung Mee Restaurant" }
-{ "name" : "Lucky 11 Bakery" }
-{ "name" : "La Cueva Deli & Grocery" }
-{ "name" : "Kennedy Fried Chicken" }
-{ "name" : "New China Star" }
-{ "name" : "Hoy Wong Restaurant" }
-{ "name" : "Elena'S Restuarant" }
+{ "name" : "Silver Krust West Indian Restaurant" }
+{ "name" : "Pure Food" }
 
 
 5. What are _id and borough of 'Seafood' (cuisine) restaurants  which received at least one "B" grade in period from 2014-02-01 to 2014-03-01? Use projection to include only _id and borough.
