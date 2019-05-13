@@ -143,7 +143,7 @@ db.airlines.aggregate([
         $group: {
             '_id': {
                 'city': '$originCity',
-                'state': '$originState'
+                'state': '$originState' 
             },
             'cityPassengers': { $sum :  '$passengers' }
         }
@@ -152,7 +152,12 @@ db.airlines.aggregate([
         $group: {
             '_id': '$_id.state',
             'totalPassengers': { $max :  '$cityPassengers' },
-            'location': { $mergeObjects: '$_id' }
+            'location': { 
+                $mergeObjects:{
+                    state: '$_id.state',
+                    city: '$_id.city'
+                }
+            }
         }
     },
     {
@@ -173,8 +178,8 @@ db.airlines.aggregate([
 
 Result:
 
-{ "totalPassengers" : 760120, "location" : { "city" : "Birmingham, AL", "state" : "Alabama" } }
-{ "totalPassengers" : 1472404, "location" : { "city" : "Anchorage, AK", "state" : "Alaska" } }
-{ "totalPassengers" : 13152753, "location" : { "city" : "Tucson, AZ", "state" : "Arizona" } }
-{ "totalPassengers" : 571452, "location" : { "city" : "El Dorado, AR", "state" : "Arkansas" } }
-{ "totalPassengers" : 23701556, "location" : { "city" : "Fresno, CA", "state" : "California" } }
+{ "totalPassengers" : 760120, "location" : { "state" : "Alabama", "city" : "Birmingham, AL" } }
+{ "totalPassengers" : 1472404, "location" : { "state" : "Alaska", "city" : "Anchorage, AK" } }
+{ "totalPassengers" : 13152753, "location" : { "state" : "Arizona", "city" : "Tucson, AZ" } }
+{ "totalPassengers" : 571452, "location" : { "state" : "Arkansas", "city" : "El Dorado, AR" } }
+{ "totalPassengers" : 23701556, "location" : { "state" : "California", "city" : "Fresno, CA" } }
