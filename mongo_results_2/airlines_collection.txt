@@ -111,11 +111,11 @@ db.airlines.aggregate([
         }
     },
     {
-        $limit: 10
+        $skip: 3
     },
     {
-        $skip: 3
-    }
+        $limit: 7
+    }  
 ]);
 
 Result:
